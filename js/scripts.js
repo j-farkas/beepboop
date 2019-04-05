@@ -136,7 +136,6 @@ function fillBoard(){
   return arr;
 }
 
-
 function displayNum(num, count){
   $('#'+num).removeClass('gray');
   if(count > 0){
@@ -144,6 +143,7 @@ function displayNum(num, count){
     $('#'+num).append("<img src=img/"+count+".png>");
   }
 }
+
 $(document).ready(function(){
   function toList(arr){
     arr.forEach(function(ar){
@@ -186,25 +186,22 @@ function attachListeners() {
               $('.msman').empty();
               $('.msman').append("<img class='center' src='img/dead.png'>")
           }
-          console.log(game);
         }else{
           if(game.gameBoard[$(this).attr('id')] >= 0){
-          checkSpace($(this).attr('id'));
-          if(game.checkWin()){
-            game.over = true;
-            $('.msman').empty();
-            $('.msman').append("<img class='center' src='img/cool.png'>")
-
-          }
-          //console.log(space);
+            checkSpace($(this).attr('id'));
+            if(game.checkWin()){
+              game.over = true;
+              $('.msman').empty();
+              $('.msman').append("<img class='center' src='img/cool.png'>")
+            }
           }
         }
     }
   }
 });
-$(".container").on( "click", ".center", function() {
-  gameInit();
-});
+  $(".container").on( "click", ".center", function() {
+    gameInit();
+  });
 };
 function gameInit(){
   game = new Board();
@@ -213,7 +210,6 @@ function gameInit(){
   $('.msman').empty();
   $('.msman').append("<img class='center' src='img/smile.png'>")
 }
-
 drawGameSpace();
 attachListeners();
 game.addMines();

@@ -17,7 +17,7 @@ _Outputs numbers up to the listed number, replacing any that contain a 1, 2, or 
 
 ## Known Bugs
 
-_Browser seems to lag after several minesweeper restarts_
+_None known_
 
 ## Specs
 _*A number containing none of 1, 2, or 3 / input: 7 / expected output: ...,7*_
