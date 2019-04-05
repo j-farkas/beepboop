@@ -1,4 +1,13 @@
 .col-sm-1 {
   border: solid black 2px;
   height: 50px;
+  width: 50px;
+}
+img{
+  height:inherit;
+  width:inherit;
+}
+
+.red{
+  background-color: red;
 }

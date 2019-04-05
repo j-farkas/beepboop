@@ -128,7 +128,7 @@ function fillBoard(){
 function displayNum(num, count){
   if(count > 0){
     $('#'+num).empty();
-    $('#'+num).append("<p>"+count+"</p>");
+    $('#'+num).append("<img src=img/"+count+".png>");
   }
 }
 $(document).ready(function(){
@@ -153,11 +153,9 @@ $(document).ready(function(){
 
   Board.prototype.drawBoard = function(){
     drawGameSpace();
-    // for(var i=0;i<100;i++){
-    //   if(this.gameBoard[i] === 'Mine'){
-    //     $('#'+i).append("<p>Mine</p>");
-    //   }
-    // }
+     for(var i=0;i<100;i++){
+         //$('#'+i).append("<img src=img/unclicked.png>");
+     }
   }
 function attachListeners() {
   $(".container").on( "click", ".col-sm-1", function() {
@@ -165,6 +163,13 @@ function attachListeners() {
       if(!game.over){
         if(game.gameBoard[$(this).attr('id')] === 'Mine'){
           game.over = true;
+          for(var i=0;i<100;i++){
+              if(game.gameBoard[i]==='Mine'){
+                $('#'+i).empty();
+                $('#'+i).append("<img src=img/bomb.png>");
+              }
+              $(this).addClass('red');
+          }
           console.log(game);
         }else{
           if(game.gameBoard[$(this).attr('id')] >= 0){
