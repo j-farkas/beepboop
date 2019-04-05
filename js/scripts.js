@@ -153,26 +153,28 @@ $(document).ready(function(){
 
   Board.prototype.drawBoard = function(){
     drawGameSpace();
-    for(var i=0;i<100;i++){
-      if(this.gameBoard[i] === 'Mine'){
-        $('#'+i).append("<p>Mine</p>");
-      }
-    }
+    // for(var i=0;i<100;i++){
+    //   if(this.gameBoard[i] === 'Mine'){
+    //     $('#'+i).append("<p>Mine</p>");
+    //   }
+    // }
   }
 function attachListeners() {
   $(".container").on( "click", ".col-sm-1", function() {
-    if(!game.over){
-      if(game.gameBoard[$(this).attr('id')] === 'Mine'){
-        game.over = true;
-        console.log(game);
-      }else{
-        if(game.gameBoard[$(this).attr('id')] >= 0){
-        checkSpace($(this).attr('id'));
-        //console.log(space);
-      }
-      }
+    if(!$(this).hasClass("flag")){
+      if(!game.over){
+        if(game.gameBoard[$(this).attr('id')] === 'Mine'){
+          game.over = true;
+          console.log(game);
+        }else{
+          if(game.gameBoard[$(this).attr('id')] >= 0){
+          checkSpace($(this).attr('id'));
+          //console.log(space);
+          }
+        }
     }
-  });
+  }
+});
 };
 
 drawGameSpace();
