@@ -22,88 +22,99 @@ function Board(){
   this.gameBoard = fillBoard();
   this.mines = 0;
   this.over = false;
-  this.left = 100;
 }
 
 
 checkSpace = function(num){
   if(num >=0){
-  num = parseInt(num);
-    var count = 0;
-    //Left, Right, Up, Down
-    var aL = num-1;
-    var aR = num+1;
-    var aU = num-10;
-    var aD = num+10;
-    var aUL=num-11;
-    var aUR=num-9;
-    var aDL=num+9;
-    var aDR=num+11
-    var adjacents = [aL,aR,aU,aD,aUL,aUR,aDL,aDR];
-    if(num%10===0){
-      //no left
-      adjacents = adjacents.filter(function(le){
-        if(le === aL || le === aUL || le === aDL ){
+    num = parseInt(num);
+      var count = 0;
+      //Left, Right, Up, Down
+      var aL = num-1;
+      var aR = num+1;
+      var aU = num-10;
+      var aD = num+10;
+      var aUL=num-11;
+      var aUR=num-9;
+      var aDL=num+9;
+      var aDR=num+11
+      var adjacents = [aL,aR,aU,aD,aUL,aUR,aDL,aDR];
+      if(num%10===0){
+        //no left
+        adjacents = adjacents.filter(function(le){
+          if(le === aL || le === aUL || le === aDL ){
+            return false;
+          }else{
+            return true;
+          }
+        })
+      }
+      //no right
+      if(num%10===9){
+        adjacents = adjacents.filter(function(le){
+          if(le === aR || le === aDR || le === aUR ){
+            return false;
+          }else{
+            return true;
+          }
+        })
+      }
+      //no up
+      if(num<10){
+        adjacents = adjacents.filter(function(le){
+          if(le === aU || le === aUR || le === aUL){
+            return false;
+          }else{
+            return true;
+          }
+        })
+      }
+      //no down
+      if(num>=90){
+        adjacents = adjacents.filter(function(le){
+          if(le === aD || le === aDR || le === aDL){
+            return false;
+          }else{
+            return true;
+          }
+        })
+      }
+    adjacents.forEach(function(a){
+      if(game.gameBoard[a]==='Mine'){
+        count++;
+      }
+    })
+    displayNum(num, count);
+    game.gameBoard[num] = -1;
+  console.log(adjacents);
+    if(count===0){
+      console.log(count);
+      adjacents = adjacents.filter(function(a){
+        if(game.gameBoard[a] < 0){
           return false;
         }else{
           return true;
         }
+
       })
+      adjacents.forEach(checkSpace);
     }
-    //no right
-    if(num%10===9){
-      adjacents = adjacents.filter(function(le){
-        if(le === aR || le === aDR || le === aUR ){
-          return false;
-        }else{
-          return true;
-        }
-      })
-    }
-    //no up
-    if(num<10){
-      adjacents = adjacents.filter(function(le){
-        if(le === aU || le === aUR || le === aUL){
-          return false;
-        }else{
-          return true;
-        }
-      })
-    }
-    //no down
-    if(num>=90){
-      adjacents = adjacents.filter(function(le){
-        if(le === aD || le === aDR || le === aDL){
-          return false;
-        }else{
-          return true;
-        }
-      })
-    }
-  adjacents.forEach(function(a){
-    if(game.gameBoard[a]==='Mine'){
+  }
+}
+
+Board.prototype.checkWin = function(){
+  count = 0;
+  this.gameBoard.forEach(function(a){
+    if(a>0){
       count++;
     }
   })
-  displayNum(num, count);
-  game.gameBoard[num] = -1;
-console.log(adjacents);
-  if(count===0){
-    console.log(count);
-    adjacents = adjacents.filter(function(a){
-      if(game.gameBoard[a] < 0){
-        return false;
-      }else{
-        return true;
-      }
-
-    })
-    adjacents.forEach(checkSpace);
+  if(count > 0)
+  {
+    return false;
   }
-
-
-
-
+  else{
+    return true;
   }
 }
 
@@ -179,6 +190,12 @@ function attachListeners() {
         }else{
           if(game.gameBoard[$(this).attr('id')] >= 0){
           checkSpace($(this).attr('id'));
+          if(game.checkWin()){
+            game.over = true;
+            $('.msman').empty();
+            $('.msman').append("<img class='center' src='img/cool.png'>")
+
+          }
           //console.log(space);
           }
         }
