@@ -22,6 +22,7 @@ function Board(){
   this.gameBoard = fillBoard();
   this.mines = 0;
   this.over = false;
+  this.left = 100;
 }
 
 
@@ -126,6 +127,7 @@ function fillBoard(){
 
 
 function displayNum(num, count){
+  $('#'+num).removeClass('gray');
   if(count > 0){
     $('#'+num).empty();
     $('#'+num).append("<img src=img/"+count+".png>");
@@ -154,7 +156,7 @@ $(document).ready(function(){
   Board.prototype.drawBoard = function(){
     drawGameSpace();
      for(var i=0;i<100;i++){
-         //$('#'+i).append("<img src=img/unclicked.png>");
+         $('#'+i).addClass("gray");
      }
   }
 function attachListeners() {
@@ -168,7 +170,10 @@ function attachListeners() {
                 $('#'+i).empty();
                 $('#'+i).append("<img src=img/bomb.png>");
               }
+              $(this).removeClass('gray');
               $(this).addClass('red');
+              $('.msman').empty();
+              $('.msman').append("<img class='center' src='img/dead.png'>")
           }
           console.log(game);
         }else{
