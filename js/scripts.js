@@ -40,7 +40,6 @@ checkSpace = function(num){
       var aDR=num+11
       var adjacents = [aL,aR,aU,aD,aUL,aUR,aDL,aDR];
       if(num%10===0){
-        //no left
         adjacents = adjacents.filter(function(le){
           if(le === aL || le === aUL || le === aDL ){
             return false;
@@ -49,7 +48,6 @@ checkSpace = function(num){
           }
         })
       }
-      //no right
       if(num%10===9){
         adjacents = adjacents.filter(function(le){
           if(le === aR || le === aDR || le === aUR ){
@@ -59,7 +57,6 @@ checkSpace = function(num){
           }
         })
       }
-      //no up
       if(num<10){
         adjacents = adjacents.filter(function(le){
           if(le === aU || le === aUR || le === aUL){
@@ -69,7 +66,6 @@ checkSpace = function(num){
           }
         })
       }
-      //no down
       if(num>=90){
         adjacents = adjacents.filter(function(le){
           if(le === aD || le === aDR || le === aDL){
