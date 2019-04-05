@@ -84,6 +84,7 @@ checkSpace = function(num){
       count++;
     }
   })
+  displayNum(num, count);
   game.gameBoard[num] = -1;
 console.log(adjacents);
   if(count===0){
@@ -96,13 +97,12 @@ console.log(adjacents);
       }
 
     })
-    //console.log(adjacents);
     adjacents.forEach(checkSpace);
   }
 
 
 
-    return count;
+
   }
 }
 
@@ -125,7 +125,12 @@ function fillBoard(){
 
 
 
-
+function displayNum(num, count){
+  if(count > 0){
+    $('#'+num).empty();
+    $('#'+num).append("<p>"+count+"</p>");
+  }
+}
 $(document).ready(function(){
   function toList(arr){
     arr.forEach(function(ar){
@@ -144,6 +149,8 @@ $(document).ready(function(){
       }
     }
   }
+
+
   Board.prototype.drawBoard = function(){
     drawGameSpace();
     for(var i=0;i<100;i++){
@@ -160,8 +167,8 @@ function attachListeners() {
         console.log(game);
       }else{
         if(game.gameBoard[$(this).attr('id')] >= 0){
-        var space = checkSpace($(this).attr('id'));
-        console.log(space);
+        checkSpace($(this).attr('id'));
+        //console.log(space);
       }
       }
     }
