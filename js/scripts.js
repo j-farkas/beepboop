@@ -40,9 +40,7 @@ function fillBoard(){
   return arr;
 }
 
-//function Board.prototype.drawBoard(){
 
-//}
 
 
 $(document).ready(function(){
@@ -63,10 +61,19 @@ $(document).ready(function(){
       }
     }
   }
+  Board.prototype.drawBoard = function(){
+    drawGameSpace();
+    for(var i=0;i<100;i++){
+      if(this.gameBoard[i] === 'Mine'){
+        $('#'+i).append("<p>Mine</p>");
+      }
+    }
+  }
 
 drawGameSpace();
 var game = new Board();
 game.addMines();
+game.drawBoard();
 console.log(game);
 
 
