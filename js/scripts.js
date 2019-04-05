@@ -207,21 +207,17 @@ $(".container").on( "click", ".center", function() {
 });
 };
 function gameInit(){
-game = new Board();
-drawGameSpace();
-attachListeners();
-game.addMines();
-game.drawBoard();
-$('.msman').empty();
-$('.msman').append("<img class='center' src='img/smile.png'>")
+  game = new Board();
+  game.addMines();
+  game.drawBoard();
+  $('.msman').empty();
+  $('.msman').append("<img class='center' src='img/smile.png'>")
 }
 
 drawGameSpace();
 attachListeners();
 game.addMines();
 game.drawBoard();
-
-
   $("form#bb").submit(function(event){
     $('.bbout').empty();
     var input = $("#num").val();
