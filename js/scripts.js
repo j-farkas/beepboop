@@ -2,7 +2,7 @@ function parse(num){
   var arr = [];
   for(var i = 0;i<num;i++)
   {
-    var j = i.split('');
+    var j = i.toString().split('');
     if(j.includes("3"))
     {
       arr.push("I'm sorry, Dave. I'm Afraid I can't do that");

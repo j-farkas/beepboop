@@ -1,18 +1,18 @@
-# _Roman Numerals_
+# _beep boop_
 
-#### _Converts Numbers into Roman Numerals_
+#### _Beep Boop Project_
 
-#### By _**Jared Farkas, Sanyu Prado**_
+#### By _**Jared Farkas**_
 
 ## Description
 
-_Converts a given number into roman numerals_
+_Outputs numbers up to the listed number, replacing any that contain a 1, 2, or 3_
 
 ## Setup/Installation Requirements
 
 * _Clone from Repository_
 * _Run in browser_
-* _Enter a number between 1 and 3999_
+* _Enter a number greater than 0_
 
 
 ## Known Bugs
@@ -20,11 +20,13 @@ _Converts a given number into roman numerals_
 _None known_
 
 ## Specs
-_*input: 1 / expected output: I*_
-_*input: 9 / expected output: IX*_
-_*input: 3000 / expected output: MMM*_
-_*input: 41 / expected output: XLI*_
-_*input: 1090 / expected output: MXC*_
+_*A number containing none of 1, 2, or 3 / input: 7 / expected output: ...,7*_
+_*A number containing a 1 / input: 1 / expected output: "Beep!"*_
+_*A number containing a 2 / input: 20 / expected output: ....,"Boop!"*_
+_*A number containing a 3 / input: 43 /  expected output: ....,"I'm sorry, Dave. I'm Afraid I can't do that"*_
+_*A number containing a 3 and a 1 / input: 13 /  expected output: ....,"I'm sorry, Dave. I'm Afraid I can't do that"*_
+_*A number containing a 3 and a 2 / input: 32 /  expected output: ....,"I'm sorry, Dave. I'm Afraid I can't do that"*_
+_*A number containing a 2 and a 1 / input: 212 /  expected output: ....,"Boop"*_
 
 ## Technologies Used
 
@@ -34,4 +36,4 @@ _HTML, CSS, Bootstrap, Javascript and Jquery were used_
 
 *This software is licensed under the MIT license*
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) 2019 **_Jared Farkas_**
