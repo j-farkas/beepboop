@@ -20,20 +20,29 @@ function parse(num){
 
 function Board(){
   this.gameBoard = fillBoard();
+  this.mines = 0;
 }
 
-
+Board.prototype.addMines = function(){
+  while(this.mines < 10){
+    var r = Math.floor(Math.random() * Math.floor(99));
+    if(this.gameBoard[r] != 'Mine'){
+      this.gameBoard[r] = 'Mine';
+      this.mines += 1;
+    }
+  }
+ }
 function fillBoard(){
   var arr = [];
   for(var i = 0;i<100;i++){
-    arr.push[i];
+    arr.push(i);
   }
   return arr;
 }
 
-/*function Board.prototype.drawBoard(){
+//function Board.prototype.drawBoard(){
 
-}*/
+//}
 
 
 $(document).ready(function(){
@@ -50,12 +59,15 @@ $(document).ready(function(){
     for(var i = 0;i<10;i++){
       $(".mines").append("<div class='row text-center "+i+"'>")
       for(var j = 0; j<10;j++){
-        $('.row.' +i).append("<div class='col-sm-1'id="+i+"><p class="+i+"></p>")
+        $('.row.' +i).append("<div class='col-sm-1'id="+parseInt((10*i)+j)+">")
       }
     }
   }
 
 drawGameSpace();
+var game = new Board();
+game.addMines();
+console.log(game);
 
 
   $("form#bb").submit(function(event){
