@@ -24,9 +24,56 @@ function Board(){
   this.over = false;
 }
 
+//D = down U = up L = left r = Right
+function cD(num){return num+10;}
+function cU(num){return num-10;}
+function cR(num){return num+1;}
+function cL(num){return num-1;}
+function cDR(num){return num+11;}
+function cDL(num){return num +9;}
+function cUR(num){return num-9;}
+function cUL(num){return num-11;}
 
 Board.prototype.checkSpace = function(num){
-console.log(num);
+  var count = 0;
+  var adjacents = ['l','r','u','d','ur','ul','dr','dl'];
+  if(num%10===0){
+    adjacents.filter(function(le){
+      if(le === 'l' || le === 'ul' || le === 'dl' ){
+        return false
+      }else{
+        return true;
+      }
+    })
+  }
+  if(num%10===9){
+    adjacents.filter(function(le){
+      if(le === 'r' || le === 'dr' || le === 'ur' ){
+        return false
+      }else{
+        return true;
+      }
+    })
+  }
+  if(num<10){
+    adjacents.filter(function(le){
+      if(le === 'u' || le === 'ur' || le === 'ul'){
+        return false
+      }else{
+        return true;
+      }
+    })
+  }
+  if(num>=90){
+    adjacents.filter(function(le){
+      if(le === 'd' || le === 'dr' || le === 'dl'){
+        return false
+      }else{
+        return true;
+      }
+    })
+  }
+
 }
 
 Board.prototype.addMines = function(){
