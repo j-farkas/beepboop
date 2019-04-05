@@ -21,6 +21,12 @@ function parse(num){
 function Board(){
   this.gameBoard = fillBoard();
   this.mines = 0;
+  this.over = false;
+}
+
+
+Board.prototype.checkSpace = function(num){
+console.log(num);
 }
 
 Board.prototype.addMines = function(){
@@ -69,8 +75,21 @@ $(document).ready(function(){
       }
     }
   }
+function attachListeners() {
+  $(".container").on( "click", ".col-sm-1", function() {
+    if(!game.over){
+      if(game.gameBoard[$(this).attr('id')] === 'Mine'){
+        game.over = true;
+        console.log(game);
+      }else{
+        game.checkSpace($(this).attr('id'));
+      }
+    }
+  });
+};
 
 drawGameSpace();
+attachListeners();
 var game = new Board();
 game.addMines();
 game.drawBoard();
