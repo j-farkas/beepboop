@@ -86,9 +86,7 @@ checkSpace = function(num){
     })
     displayNum(num, count);
     game.gameBoard[num] = -1;
-  console.log(adjacents);
     if(count===0){
-      console.log(count);
       adjacents = adjacents.filter(function(a){
         if(game.gameBoard[a] < 0){
           return false;
