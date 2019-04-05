@@ -127,6 +127,7 @@ Board.prototype.addMines = function(){
     }
   }
  }
+
 function fillBoard(){
   var arr = [];
   for(var i = 0;i<100;i++){
@@ -134,7 +135,6 @@ function fillBoard(){
   }
   return arr;
 }
-
 
 
 function displayNum(num, count){
@@ -202,13 +202,24 @@ function attachListeners() {
     }
   }
 });
+$(".container").on( "click", ".center", function() {
+  gameInit();
+});
 };
+function gameInit(){
+game = new Board();
+drawGameSpace();
+attachListeners();
+game.addMines();
+game.drawBoard();
+$('.msman').empty();
+$('.msman').append("<img class='center' src='img/smile.png'>")
+}
 
 drawGameSpace();
 attachListeners();
 game.addMines();
 game.drawBoard();
-console.log(game);
 
 
   $("form#bb").submit(function(event){
