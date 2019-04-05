@@ -26,69 +26,84 @@ function Board(){
 
 
 checkSpace = function(num){
+  if(num >=0){
   num = parseInt(num);
-  var count = 0;
-  //Left, Right, Up, Down
-  var aL = num-1;
-  var aR = num+1;
-  var aU = num-10;
-  var aD = num+10;
-  var aUL=num-11;
-  var aUR=num-9;
-  var aDL=num+9;
-  var aDR=num+11
-  var adjacents = [aL,aR,aU,aD,aUL,aUR,aDL,aDR];
-  if(num%10===0){
-    //no left
-    adjacents = adjacents.filter(function(le){
-      if(le === aL || le === aUL || le === aDL ){
+    var count = 0;
+    //Left, Right, Up, Down
+    var aL = num-1;
+    var aR = num+1;
+    var aU = num-10;
+    var aD = num+10;
+    var aUL=num-11;
+    var aUR=num-9;
+    var aDL=num+9;
+    var aDR=num+11
+    var adjacents = [aL,aR,aU,aD,aUL,aUR,aDL,aDR];
+    if(num%10===0){
+      //no left
+      adjacents = adjacents.filter(function(le){
+        if(le === aL || le === aUL || le === aDL ){
+          return false;
+        }else{
+          return true;
+        }
+      })
+    }
+    //no right
+    if(num%10===9){
+      adjacents = adjacents.filter(function(le){
+        if(le === aR || le === aDR || le === aUR ){
+          return false;
+        }else{
+          return true;
+        }
+      })
+    }
+    //no up
+    if(num<10){
+      adjacents = adjacents.filter(function(le){
+        if(le === aU || le === aUR || le === aUL){
+          return false;
+        }else{
+          return true;
+        }
+      })
+    }
+    //no down
+    if(num>=90){
+      adjacents = adjacents.filter(function(le){
+        if(le === aD || le === aDR || le === aDL){
+          return false;
+        }else{
+          return true;
+        }
+      })
+    }
+  adjacents.forEach(function(a){
+    if(game.gameBoard[a]==='Mine'){
+      count++;
+    }
+  })
+  game.gameBoard[num] = -1;
+console.log(adjacents);
+  if(count===0){
+    console.log(count);
+    adjacents = adjacents.filter(function(a){
+      if(game.gameBoard[a] < 0){
         return false;
       }else{
         return true;
       }
-    })
-  }
-  //no right
-  if(num%10===9){
-    adjacents = adjacents.filter(function(le){
-      if(le === aR || le === aDR || le === aUR ){
-        return false;
-      }else{
-        return true;
-      }
-    })
-  }
-  //no up
-  if(num<10){
-    adjacents = adjacents.filter(function(le){
-      if(le === aU || le === aUR || le === aUL){
-        return false;
-      }else{
-        return true;
-      }
-    })
-  }
-  //no down
-  if(num>=90){
-    adjacents = adjacents.filter(function(le){
-      if(le === aD || le === aDR || le === aDL){
-        return false;
-      }else{
-        return true;
-      }
-    })
-  }
-adjacents.forEach(function(a){
-  if(game.gameBoard[a]==='Mine'){
-    count++;
-  }
-})
 
-if(count===0){
-  //adjacents.forEach(checkSpace)
-}
-  console.log(adjacents);
-return count;
+    })
+    //console.log(adjacents);
+    adjacents.forEach(checkSpace);
+  }
+
+
+
+    return count;
+  }
 }
 
 Board.prototype.addMines = function(){
@@ -144,8 +159,10 @@ function attachListeners() {
         game.over = true;
         console.log(game);
       }else{
+        if(game.gameBoard[$(this).attr('id')] >= 0){
         var space = checkSpace($(this).attr('id'));
         console.log(space);
+      }
       }
     }
   });
