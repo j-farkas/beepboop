@@ -41,18 +41,23 @@ $(document).ready(function(){
     arr.forEach(function(ar){
       $(".bbout").append("<li>" + ar +"</li>");
 
-      function drawGameSpace(){
-        //$(".ms").empty();
-        $(".ms").append("<p>hello</p>");
-        //for(var i = 0;i<10;i++){
-        //  $("#ms").append<div class="row text-center">
-      //  }
-      }
-
-$('.mines').empty();
     });
 
   }
+  function drawGameSpace(){
+    $(".mines").empty();
+    $(".mines").append("<h2 class='text-center'>Minesweeper</h2>");
+    for(var i = 0;i<10;i++){
+      $(".mines").append("<div class='row text-center "+i+"'>")
+      for(var j = 0; j<10;j++){
+        $('.row.' +i).append("<div class='col-sm-1'id="+i+"><p class="+i+"></p>")
+      }
+    }
+  }
+
+drawGameSpace();
+
+
   $("form#bb").submit(function(event){
     $('.bbout').empty();
     var input = $("#num").val();
@@ -60,6 +65,5 @@ $('.mines').empty();
     toList(input);
     event.preventDefault();
     drawGameSpace();
-    //$(".ms").append("<p>hello</p>");
   });
 });
