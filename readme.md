@@ -40,6 +40,8 @@ _*A square with no adjacent mines is clicked / input: n/a / All adjacent squares
 
 _*A square with an adjacent mine is clicked / input: n/a / A number is placed on the square showing how many mines are adjacent to it*_
 
+_*The Emoji man at the top is clicked on / input: A click / Minesweeper game is restarted*_
+
 ## Technologies Used
 
 _HTML, CSS, Bootstrap, Javascript and Jquery were used_
